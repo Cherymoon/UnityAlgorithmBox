@@ -39,6 +39,10 @@ public class AttributeManager : MonoBehaviour
         {
             attributes |= INVISIBLE;
         }
+        else if (other.gameObject.tag == "ANTIMAGIC")
+        {
+            attributes &= ~MAGIC;
+        }
     }
 
     void Start()
@@ -51,6 +55,15 @@ public class AttributeManager : MonoBehaviour
         Vector3 screenPoint = Camera.main.WorldToScreenPoint(transform.position);
         attributeDisplay.transform.position = screenPoint + new Vector3(0, -50, 0);
         attributeDisplay.text = Convert.ToString(attributes, 2).PadLeft(8, '0');
+
+        if (Input.GetKeyUp(KeyCode.Equals))
+        {
+            attributes |= MAGIC | INVISIBLE;
+        }
+        if(Input.GetKeyUp(KeyCode.Minus))
+        {
+            attributes &= ~(MAGIC | INVISIBLE);
+        }
     }
 
 }
