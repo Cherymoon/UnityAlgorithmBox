@@ -8,6 +8,10 @@ using UnityEngine.UI;
 public class AttributeManager : MonoBehaviour
 {
     static public int MAGIC = 16;
+    static public int INTELLIGENCE = 8;
+    static public int CHARISMA = 4;
+    static public int FLY = 2;
+    static public int INVISIBLE = 1;
 
     public Text attributeDisplay;
     public int attributes = 0;
@@ -19,15 +23,29 @@ public class AttributeManager : MonoBehaviour
         {
             attributes |= MAGIC;
         }
+        else if (other.gameObject.tag == "INTELLIGENCE")
+        {
+            attributes |= INTELLIGENCE;
+        }
+        else if (other.gameObject.tag == "CHARISMA")
+        {
+            attributes |= CHARISMA;
+        }
+        else if (other.gameObject.tag == "FLY")
+        {
+            attributes |= FLY;
+        }
+        else if (other.gameObject.tag == "INVISIBLE")
+        {
+            attributes |= INVISIBLE;
+        }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 screenPoint = Camera.main.WorldToScreenPoint(transform.position);
