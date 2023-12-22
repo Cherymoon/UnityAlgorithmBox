@@ -20,7 +20,7 @@ public class AttributeManager : MonoBehaviour
     {
         if(other.gameObject.tag == "MAGIC")
         {
-            attributes |= MAGIC;
+            attributes ^= MAGIC;
         }
         else if (other.gameObject.tag == "INTELLIGENCE")
         {
