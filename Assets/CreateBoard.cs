@@ -8,7 +8,7 @@ public class CreateBoard : MonoBehaviour
     public GameObject housePrefab;
     public Text score;
 
-    long dirtBB;
+    long dirtBB = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -23,13 +23,47 @@ public class CreateBoard : MonoBehaviour
                 GameObject tile = Instantiate(tilePrefabs[randomTile], pos, Quaternion.identity);
 
                 tile.name = tile.tag + "_" + r + "_" + c;
+
+                if (tile.tag == "Dirt")
+                {
+                    dirtBB = SetCellState(dirtBB, r, c);
+                    PrintBB("Dirt", dirtBB);
+                }
             }
         }
+
+        Debug.Log("Dirst cells = " + CellCount(dirtBB));
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    long SetCellState(long bitboard, int row, int col)
+    {
+        long newBit = 1L << (row * 8 + col);
+
+        return bitboard |= newBit;
+    }
+
+    int CellCount(long bitboard)
+    {
+        int count = 0;
+        long bb = bitboard;
+
+        while(bb != 0)
+        {
+            bb &= bb - 1;
+            count++;
+        }
+
+        return count;
+    }
+
+    void PrintBB(string name, long BB)
+    {
+        Debug.Log(name + ": " + Convert.ToString(BB, 2).PadLeft(64, '0'));
     }
 }
