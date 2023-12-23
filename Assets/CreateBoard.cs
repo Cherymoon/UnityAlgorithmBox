@@ -13,6 +13,7 @@ public class CreateBoard : MonoBehaviour
     public Text score;
 
     long dirtBB = 0;
+    long desertBB = 0;
     long treeBB = 0;
     long playerBB = 0;
 
@@ -35,12 +36,14 @@ public class CreateBoard : MonoBehaviour
                 if (tile.tag == "Dirt")
                 {
                     dirtBB = SetCellState(dirtBB, r, c);
-                    // PrintBB("Dirt", dirtBB);
+                }
+                else if (tile.tag == "Desert")
+                {
+                    desertBB = SetCellState(desertBB, r, c);
                 }
             }
         }
 
-        Debug.Log("Dirst cells = " + CellCount(dirtBB));
         InvokeRepeating("PlantTree", 1, 1);
     }
 
@@ -53,7 +56,9 @@ public class CreateBoard : MonoBehaviour
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                if (GetCellState(dirtBB & ~treeBB, (int)hit.collider.gameObject.transform.position.z, (int)hit.collider.gameObject.transform.position.x))
+                int r = (int)hit.collider.gameObject.transform.position.z;
+                int c = (int)hit.collider.gameObject.transform.position.x;
+                if (GetCellState((dirtBB | desertBB) & ~treeBB, r, (int)hit.collider.gameObject.transform.position.x))
                 {
                     GameObject house = Instantiate(housePrefab);
                     house.transform.parent = hit.collider.gameObject.transform;
@@ -114,6 +119,6 @@ public class CreateBoard : MonoBehaviour
 
     void CalculateScore()
     {
-        score.text = "Score: " + CellCount(playerBB);
+        score.text = "Score: " + (int) (CellCount(playerBB & dirtBB) * 10 + CellCount(playerBB & desertBB) * 2);
     }
 }
