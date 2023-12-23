@@ -59,6 +59,7 @@ public class CreateBoard : MonoBehaviour
                     house.transform.parent = hit.collider.gameObject.transform;
                     house.transform.localPosition = Vector3.zero;
                     playerBB = SetCellState(playerBB, (int)hit.collider.gameObject.transform.position.z, (int)hit.collider.gameObject.transform.position.x);
+                    CalculateScore();
                 }
             }
         }
@@ -109,5 +110,10 @@ public class CreateBoard : MonoBehaviour
     void PrintBB(string name, long BB)
     {
         Debug.Log(name + ": " + Convert.ToString(BB, 2).PadLeft(64, '0'));
+    }
+
+    void CalculateScore()
+    {
+        score.text = "Score: " + CellCount(playerBB);
     }
 }
