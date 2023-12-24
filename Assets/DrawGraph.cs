@@ -13,7 +13,7 @@ public class DrawGraph : MonoBehaviour
     {
         if (lastSize != size)
         {
-            size = Mathf.Clamp(size, 2, 30);
+            size = Mathf.Clamp(size, 1, 60);
             lastSize = size;
             generatedLines.ForEach(p => Destroy(p));
             generatedLines.Clear();
@@ -24,7 +24,7 @@ public class DrawGraph : MonoBehaviour
                 generatedLines.Add(Coords.DrawLine(new Coords(-115.16f, y * -size), new Coords(115.16f, y * -size), .5f, Color.white));
             }
 
-            for (int x = 0; x < Camera.main.orthographicSize / size * 1.8f; x++)
+            for (int x = 0; x < Camera.main.orthographicSize / size * 1.8f ; x++)
             {
                 generatedLines.Add(Coords.DrawLine(new Coords(x * size, -65), new Coords(x * size, 65), .5f, Color.white));
                 generatedLines.Add(Coords.DrawLine(new Coords(x * -size, -65), new Coords(x * -size, 65), .5f, Color.white));
