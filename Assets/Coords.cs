@@ -31,7 +31,7 @@ public class Coords
         lineRenderer.endWidth = width;
     } 
 
-    public static void DrawLine(Coords startPoint, Coords endPoint, float width, Color color)
+    public static GameObject DrawLine(Coords startPoint, Coords endPoint, float width, Color color)
     {
         GameObject line = new GameObject($"Line_{startPoint.ToString()}-{endPoint.ToString()}");
         LineRenderer lineRenderer = line.AddComponent<LineRenderer>();
@@ -42,5 +42,7 @@ public class Coords
         lineRenderer.SetPosition(1, new Vector3(endPoint.x, endPoint.y, endPoint.z));
         lineRenderer.startWidth = width;
         lineRenderer.endWidth = width;
+
+        return line;
     }
 }
