@@ -10,8 +10,7 @@ public class Drive : MonoBehaviour
 
     void Start()
     {
-        float a = UMath.AngleDegres(new Coords(3,4), new Coords(10,1));
-        Debug.Log(a);
+        float a = UMath.AngleDegres(new Coords(3,4), new Coords(-1,-5));
     }
 
     void Update()
