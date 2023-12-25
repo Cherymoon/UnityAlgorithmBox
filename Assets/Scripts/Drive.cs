@@ -8,6 +8,12 @@ public class Drive : MonoBehaviour
     public float speed = 10.0f;
     public float rotationSpeed = 100.0f;
 
+    void Start()
+    {
+        float a = UMath.AngleDegres(new Coords(3,4), new Coords(10,1));
+        Debug.Log(a);
+    }
+
     void Update()
     {
         // Get the horizontal and vertical axis.
