@@ -5,13 +5,15 @@ using System.Collections;
 
 public class Drive : MonoBehaviour
 {
+    public GameObject fuel;
     public float speed = 10.0f;
     public float rotationSpeed = 100.0f;
 
     void Start()
     {
-        float a = UMath.AngleDegres(new Coords(3,4), new Coords(-1,-5));
+
     }
+
 
     void Update()
     {
@@ -30,5 +32,9 @@ public class Drive : MonoBehaviour
 
         // Rotate around our y-axis
         transform.Rotate(0, 0, -rotation);
+
+        UMath.LookTo(gameObject, fuel.transform.position);
     }
+
+
 }
