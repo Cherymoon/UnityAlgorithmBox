@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Experimental.GlobalIllumination;
 
 // A very simplistic car driving on the x-z plane.
 
@@ -35,12 +36,12 @@ public class Drive : MonoBehaviour
 
         // Rotate around our y-axis
         transform.Rotate(0, 0, -rotation);
-
-        if (Input.GetKeyUp(KeyCode.C))
-        {
-            transform.up = UMath.LookAt(gameObject.transform.up, transform.position, fuel.transform.position);
-        }
     }
 
 
+    public void RotateTankTo(float desiredAngle)
+    {
+        float radAngle = (desiredAngle * Mathf.PI) / 180;
+        transform.up = UMath.RotateVector(transform.up, radAngle, false);
+    }
 }
