@@ -8,7 +8,6 @@ public class DrawLines : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(point.ToString());
         point.DrawPoint(1, Color.green);
 
         new Coords(0, 0).DrawPoint(1, Color.red);

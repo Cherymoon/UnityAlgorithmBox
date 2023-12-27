@@ -61,7 +61,6 @@ public class UMath
         {
             angle = 2 * Mathf.PI - angle;
         }
-        Debug.Log(angle * 180 / Math.PI);
 
         float xVal = vector.x * Mathf.Cos(angle) - vector.y * Mathf.Sin(angle);
         float yVal = vector.x * Mathf.Sin(angle) + vector.y * Mathf.Cos(angle);
