@@ -11,9 +11,12 @@ public class Drive : MonoBehaviour
 
     void Start()
     {
-
     }
 
+    void xxx()
+    {
+
+    }
 
     void Update()
     {
@@ -33,7 +36,10 @@ public class Drive : MonoBehaviour
         // Rotate around our y-axis
         transform.Rotate(0, 0, -rotation);
 
-        UMath.LookTo(gameObject, fuel.transform.position);
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            transform.up = UMath.LookAt(gameObject.transform.up, transform.position, fuel.transform.position);
+        }
     }
 
 
