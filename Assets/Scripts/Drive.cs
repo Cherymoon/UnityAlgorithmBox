@@ -14,11 +14,6 @@ public class Drive : MonoBehaviour
     {
     }
 
-    void xxx()
-    {
-
-    }
-
     void Update()
     {
         // Get the horizontal and vertical axis.
