@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.Experimental.GlobalIllumination;
 
 // A very simplistic car driving on the x-z plane.
 
@@ -27,16 +25,27 @@ public class Drive : MonoBehaviour
         rotation *= Time.deltaTime;
 
         // Move translation along the object's z-axis
-        transform.Translate(0, translation, 0);
+        Translate(transform, new Vector3(0, translation, 0));
 
         // Rotate around our y-axis
         transform.Rotate(0, 0, -rotation);
     }
 
-
-    public void RotateTankTo(float desiredAngle)
+    void Translate(Transform transform, Vector3 dir)
     {
-        float radAngle = (desiredAngle * Mathf.PI) / 180;
-        transform.up = UMath.RotateVector(transform.up, radAngle, false);
+        float angleYAxis = UMath.Angle(Vector3.up, transform.up);
+
+        if (UMath.IsDirectionClockWise(Vector3.up, transform.up))
+        {
+            angleYAxis = 2 * Mathf.PI - angleYAxis;
+        }
+
+        float velX = -dir.y * Mathf.Sin(angleYAxis);
+        float velY = dir.y * Mathf.Cos(angleYAxis);
+
+
+        transform.position += new Vector3(velX, velY, 0);
     }
+
+
 }
