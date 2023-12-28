@@ -33,9 +33,11 @@ public class Drive : MonoBehaviour
 
     void Translate(Transform transform, Vector3 dir)
     {
-        float angleYAxis = UMath.Angle(Vector3.up, transform.up);
+        if(Vector3.Distance(Vector3.zero, dir) == 0) return;
+        
+        float angleYAxis = UMath.Angle(dir, transform.up);
 
-        if (UMath.IsDirectionClockWise(Vector3.up, transform.up))
+        if (UMath.IsDirectionClockWise(dir, transform.up))
         {
             angleYAxis = 2 * Mathf.PI - angleYAxis;
         }
