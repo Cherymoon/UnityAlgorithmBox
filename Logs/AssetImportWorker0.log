@@ -291,3 +291,24 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 77.686550 seconds.
+  path: Assets/AircraftPropeller.prefab
+  artifactKey: Guid(29c018fdf955849b6b952586918d9740) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AircraftPropeller.prefab using Guid(29c018fdf955849b6b952586918d9740) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac9167494162b5b690cabf2843cf755c') in 0.970056 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 186
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Red.mat
+  artifactKey: Guid(d655552ded9a84bcf82e9f622a2cd1ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Red.mat using Guid(d655552ded9a84bcf82e9f622a2cd1ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3322288b9ebf6798d88b9b8dbce37f07') in 0.059314 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: A operação de E/S foi anulada devido a uma saída de thread ou a uma requisição de aplicativo.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
