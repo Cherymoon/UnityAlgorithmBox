@@ -36,11 +36,15 @@ public class Drive : MonoBehaviour
         if(Vector3.Distance(Vector3.zero, dir) == 0) return;
         
         float angleYAxis = UMath.Angle(dir, transform.up);
+        float angleNormal = UMath.Angle(Vector3.up, dir);
 
         if (UMath.IsDirectionClockWise(dir, transform.up))
         {
             angleYAxis = 2 * Mathf.PI - angleYAxis;
         }
+
+        dir = UMath.RotateVector(dir, angleNormal, UMath.IsDirectionClockWise(dir, transform.up));
+
 
         float velX = -dir.y * Mathf.Sin(angleYAxis);
         float velY = dir.y * Mathf.Cos(angleYAxis);
