@@ -10,12 +10,13 @@ public class Fly : MonoBehaviour
 
     void Update()
     {
+        TranslateHandler();
         RotateHandler();
     }
 
     public void TranslateHandler()
     {
-        float translateX = Input.GetAxis("Horizontal") * speed;
+        float translateX = Input.GetAxis("Horizontal") * speed * 0;
         float translateY = Input.GetAxis("VerticalY") * speed;
         float translateZ = Input.GetAxis("Vertical") * speed;
 
@@ -24,10 +25,21 @@ public class Fly : MonoBehaviour
 
     public void RotateHandler()
     {
-        float rotationX = Input.GetAxis("Vertical") * speed;
+        float rotationX = Input.GetAxis("Vertical") * speed * 0;
         float rotationY = Input.GetAxis("Horizontal") * speed;
         float rotationZ = Input.GetAxis("HorizontalZ") * speed;
 
         transform.Rotate(rotationX, rotationY, rotationZ);
+    }
+
+    public void PlaneMovement()
+    {
+        float rotationX = Input.GetAxis("Vertical") * speed ;
+        float rotationY = Input.GetAxis("Horizontal") * speed;
+        float rotationZ = Input.GetAxis("HorizontalZ") * speed;
+        float translateZ = Input.GetAxis("VerticalY") * speed;
+
+        transform.Rotate(rotationX, rotationY, rotationZ);
+        transform.Translate(0, 0, translateZ);
     }
 }
