@@ -73,4 +73,9 @@ public class UMath
         Vector3 v = b - a;
         return a + (v * Mathf.Clamp01(t));
     }
+
+    static public Vector3 GetPerp(Vector3 v)
+    {
+        return new Vector3(-v.y, v.x, v.z);
+    }
 }
