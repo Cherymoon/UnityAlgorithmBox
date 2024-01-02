@@ -67,4 +67,10 @@ public class UMath
 
         return new Vector3(xVal, yVal, 0);
     }
+
+    static public Vector3 Lerp(Vector3 a, Vector3 b, float t)
+    {
+        Vector3 v = b - a;
+        return a + (v * Mathf.Clamp01(t));
+    }
 }

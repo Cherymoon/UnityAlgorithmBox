@@ -10,11 +10,11 @@ public class Move : MonoBehaviour
 
     void Start()
     {
-        line = new Line(start.position, end.position);
+        line = new Line(start.position, end.position, Line.LINETYPE.SEGMENT);
     }
 
     void Update()
     {
-        transform.position = line.GetPointAt(Time.time);
+        transform.position = UMath.Lerp(start.position, end.position, Time.time * 0.05f);
     }
 }
