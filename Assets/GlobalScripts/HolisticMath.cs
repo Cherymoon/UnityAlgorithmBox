@@ -53,8 +53,8 @@ public class HolisticMath
     {
         float dotDivide = Dot(vector1, vector2) / (Distance(new Coords(0, 0, 0), vector1) * Distance(new Coords(0, 0, 0), vector2));
         return Mathf.Acos(dotDivide);  //radians.  For degrees * 180/Mathf.PI;
-    }
 
+    }
     static public Coords Cross(Coords vector1, Coords vector2)
     {
         float iMult = vector1.y * vector2.z - vector1.z * vector2.y;

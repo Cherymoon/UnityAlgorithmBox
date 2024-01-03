@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class Line
@@ -31,10 +32,22 @@ public class Line
         type = LINETYPE.SEGMENT;
     }
 
+    public float IntersectsAt(Plane p)
+    {
+        Coords n = HolisticMath.Cross(p.v, p.u);
+        if(HolisticMath.Dot(n, v) == 0)
+        {
+            return float.NaN;
+        }
+        
+        float t = HolisticMath.Dot(new Coords(-n.x, -n.y, -n.z), A - p.A) / HolisticMath.Dot(n, B - A);
+
+        return t;
+    }
 
     public float IntersectsAt(Line l)
     {
-        if(HolisticMath.Dot(Coords.Perp(l.v), v) == 0)
+        if (HolisticMath.Dot(Coords.Perp(l.v), v) == 0)
         {
             return float.NaN;
         }
@@ -42,7 +55,7 @@ public class Line
         Coords c = l.A - this.A;
         float t = HolisticMath.Dot(Coords.Perp(l.v), c) / HolisticMath.Dot(Coords.Perp(l.v), v);
 
-        if(t < 0 || t > 1 && type == LINETYPE.SEGMENT)
+        if (t < 0 || t > 1 && type == LINETYPE.SEGMENT)
         {
             return float.NaN;
         }
