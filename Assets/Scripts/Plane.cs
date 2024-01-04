@@ -5,8 +5,8 @@ using UnityEngine;
 public class Plane
 {
     public Coords A;
-    public Coords B;
-    public Coords C;
+    Coords B;
+    Coords C;
     public Coords v;
     public Coords u;
 
@@ -34,4 +34,6 @@ public class Plane
 
         return new Coords(xst, yst, zst);
     }
+   
+
 }

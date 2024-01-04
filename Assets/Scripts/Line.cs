@@ -1,19 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Text;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class Line
 {
-    Coords A, B, v;
+    public Coords A;
+    Coords B;
+    public Coords v;
 
-    public enum LINETYPE
-    {
-        LINE,
-        SEGMENT,
-        RAY
-    }
-
+    public enum LINETYPE { LINE, SEGMENT, RAY };
     LINETYPE type;
 
     public Line(Coords _A, Coords _B, LINETYPE _type)
@@ -32,16 +28,22 @@ public class Line
         type = LINETYPE.SEGMENT;
     }
 
+    public Coords Reflect(Coords normal)
+    {
+        Coords n = normal.GetNormal();
+        Coords vnorm = v.GetNormal();
+
+        Coords r = vnorm - (n * 2 * HolisticMath.Dot(vnorm, n)); 
+
+        return r;
+    }
+
     public float IntersectsAt(Plane p)
     {
-        Coords n = HolisticMath.Cross(p.v, p.u);
-        if(HolisticMath.Dot(n, v) == 0)
-        {
+        Coords normal = HolisticMath.Cross(p.u, p.v);
+        if (HolisticMath.Dot(normal, v) == 0)
             return float.NaN;
-        }
-        
-        float t = HolisticMath.Dot(new Coords(-n.x, -n.y, -n.z), A - p.A) / HolisticMath.Dot(n, B - A);
-
+        float t = HolisticMath.Dot(normal, p.A - A) / HolisticMath.Dot(normal, v);
         return t;
     }
 
@@ -51,17 +53,15 @@ public class Line
         {
             return float.NaN;
         }
-
         Coords c = l.A - this.A;
         float t = HolisticMath.Dot(Coords.Perp(l.v), c) / HolisticMath.Dot(Coords.Perp(l.v), v);
-
-        if (t < 0 || t > 1 && type == LINETYPE.SEGMENT)
+        if ((t < 0 || t > 1) && type == LINETYPE.SEGMENT)
         {
             return float.NaN;
         }
-
         return t;
     }
+
 
     public void Draw(float width, Color col)
     {
@@ -81,4 +81,9 @@ public class Line
 
         return new Coords(xt, yt, zt);
     }
+
+    //3D Line Intersection Algorithm
+    //http://inis.jinr.ru/sl/vol1/CMC/Graphics_Gems_1,ed_A.Glassner.pdf
+
+
 }

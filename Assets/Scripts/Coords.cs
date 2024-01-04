@@ -30,6 +30,12 @@ public class Coords
         z = vecpos.z;
     }
 
+    public Coords GetNormal()
+    {
+        float magnitude = HolisticMath.Distance(new Coords(0, 0, 0), new Coords(x, y, z));
+        return new Coords(x / magnitude, y / magnitude, z / magnitude);
+    }
+
     public override string ToString()
     {
         return "(" + x + "," + y + "," + z + ")";
@@ -42,12 +48,31 @@ public class Coords
 
     static public Coords operator +(Coords a, Coords b)
     {
-        return new Coords(a.x + b.x, a.y + b.y, a.z + b.z);
+        Coords c = new Coords(a.x + b.x, a.y + b.y, a.z + b.z);
+        return c;
     }
 
     static public Coords operator -(Coords a, Coords b)
     {
-        return new Coords(a.x - b.x, a.y - b.y, a.z - b.z);
+        Coords c = new Coords(a.x - b.x, a.y - b.y, a.z - b.z);
+        return c;
+    }
+
+    static public Coords operator /(Coords a, float b)
+    {
+        Coords c = new Coords(a.x / b, a.y / b, a.z / b);
+        return c;
+    }
+
+    static public Coords operator *(Coords a, float b)
+    {
+        Coords c = new Coords(a.x * b, a.y * b, a.z * b);
+        return c;
+    }
+
+    static public Coords Perp(Coords v)
+    {
+        return new Coords(-v.y, v.x, -1.0f);
     }
 
     static public void DrawLine(Coords startPoint, Coords endPoint, float width, Color colour)
@@ -61,12 +86,6 @@ public class Coords
         lineRenderer.SetPosition(1, new Vector3(endPoint.x, endPoint.y, endPoint.z));
         lineRenderer.startWidth = width;
         lineRenderer.endWidth = width;
-    }
-
-
-    static public Coords Perp(Coords v)
-    {
-        return new Coords(-v.y, v.x);
     }
 
     static public void DrawPoint(Coords position, float width, Color colour)

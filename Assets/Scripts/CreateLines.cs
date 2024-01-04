@@ -10,9 +10,9 @@ public class CreateLines : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        L1 = new Line(new Coords(0.0f, 0.0f, 0.0f), new Coords(-6.0f, 7.0f, 3.0f));
+        L1 = new Line(new Coords(-100, 0, 0), new Coords(20, 50, 0));
         L1.Draw(1, Color.green);
-        L2 = new Line(new Coords(0.0f, 0.0f, 0.0f), new Coords(-7.0f, -6.0f, 6.0f));
+        L2 = new Line(new Coords(-100, 10, 0), new Coords(0, 50, 0));
         L2.Draw(1, Color.red);
 
         float intersectT = L1.IntersectsAt(L2);
@@ -23,6 +23,8 @@ public class CreateLines : MonoBehaviour
             GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             sphere.transform.position = L1.Lerp(intersectT).ToVector();
         }
+
+        Debug.Log("T:" + intersectT + " S:" + intersectS);
     }
 
     // Update is called once per frame
