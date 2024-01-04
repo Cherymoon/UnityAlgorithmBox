@@ -3,15 +3,14 @@ using UnityEngine;
 public class PlaneRayIntersection : MonoBehaviour
 {
     public GameObject sphere;
-    public Transform corner1;
-    public Transform corner2;
-    public Transform corner3;
+    public GameObject quad;
 
     Plane mPlane;
 
     void Start()
     {
-        mPlane = new Plane(corner1.position, corner2.position, corner3.position);
+        Vector3[] vertices = quad.GetComponent<MeshFilter>().mesh.vertices;
+        mPlane = new Plane(quad.transform.TransformPoint(vertices[0]), quad.transform.TransformPoint(vertices[1]), quad.transform.TransformPoint(vertices[2]));
     }
 
     void Update()
