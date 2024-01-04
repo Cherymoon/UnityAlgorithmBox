@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Plane
+public class MPlane
 {
     public Coords A;
     Coords B;
@@ -10,7 +8,7 @@ public class Plane
     public Coords v;
     public Coords u;
 
-    public Plane(Coords _A, Coords _B, Coords _C)
+    public MPlane(Coords _A, Coords _B, Coords _C)
     {
         A = _A;
         B = _B;
@@ -19,11 +17,18 @@ public class Plane
         u = C - A;
     }
 
-    public Plane(Coords _A, Vector3 V, Vector3 U)
+    public MPlane(Coords _A, Vector3 V, Vector3 U)
     {
         A = _A;
         v = new Coords(V.x, V.y, V.z);
         u = new Coords(U.x, U.y, U.z);
+    }
+
+    public MPlane(Vector3 _A, Vector3 _B, Vector3 _C)
+    {
+        A = new Coords(_A.x, _A.y, _A.z);
+        B = new Coords(_B.x, _B.y, _B.z);
+        C = new Coords(_C.x, _C.y, _C.z);
     }
 
     public Coords Lerp(float s, float t)
@@ -34,6 +39,6 @@ public class Plane
 
         return new Coords(xst, yst, zst);
     }
-   
+
 
 }

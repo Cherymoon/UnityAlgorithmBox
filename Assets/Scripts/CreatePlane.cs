@@ -7,12 +7,12 @@ public class CreatePlane : MonoBehaviour
     public Transform A;
     public Transform B;
     public Transform C;
-    Plane plane;
+    MPlane plane;
 
     // Start is called before the first frame update
     void Start()
     {
-        plane = new Plane(new Coords(A.position), 
+        plane = new MPlane(new Coords(A.position), 
                           new Coords(B.position), 
                           new Coords(C.position));
 

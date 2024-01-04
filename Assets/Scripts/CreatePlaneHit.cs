@@ -10,13 +10,13 @@ public class CreatePlaneHit : MonoBehaviour
     public Transform D;
     public Transform E;
 
-    Plane plane;
+    MPlane plane;
     Line L1;
 
     // Start is called before the first frame update
     void Start()
     {
-        plane = new Plane(new Coords(A.position),
+        plane = new MPlane(new Coords(A.position),
                         new Coords(B.position),
                         new Coords(C.position));
 

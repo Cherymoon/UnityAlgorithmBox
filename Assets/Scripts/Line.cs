@@ -38,7 +38,7 @@ public class Line
         return r;
     }
 
-    public float IntersectsAt(Plane p)
+    public float IntersectsAt(MPlane p)
     {
         Coords normal = HolisticMath.Cross(p.u, p.v);
         if (HolisticMath.Dot(normal, v) == 0)
