@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlaneRayIntersection : MonoBehaviour
 {
-    public GameObject sphere;
+    public GameObject sheep;
     public GameObject quad;
 
     Plane mPlane;
@@ -10,7 +10,8 @@ public class PlaneRayIntersection : MonoBehaviour
     void Start()
     {
         Vector3[] vertices = quad.GetComponent<MeshFilter>().mesh.vertices;
-        mPlane = new Plane(quad.transform.TransformPoint(vertices[0]), quad.transform.TransformPoint(vertices[1]), quad.transform.TransformPoint(vertices[2]));
+        Vector3 yOffset = new Vector3(0, 0.3f, 0);
+        mPlane = new Plane(quad.transform.TransformPoint(vertices[0]) + yOffset, quad.transform.TransformPoint(vertices[1]) + yOffset, quad.transform.TransformPoint(vertices[2]) + yOffset);
     }
 
     void Update()
@@ -23,7 +24,7 @@ public class PlaneRayIntersection : MonoBehaviour
             if (mPlane.Raycast(ray, out t))
             {
                 Vector3 hitpoint = ray.GetPoint(t);
-                sphere.transform.position = hitpoint;
+                sheep.transform.position = hitpoint;
             }
         }
     }
