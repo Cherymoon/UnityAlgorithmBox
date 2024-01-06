@@ -54,4 +54,30 @@ public class Matrix
             throw new Exception("The two matrixes must be the same length!");
         }
     }
+
+    static public Matrix operator *(Matrix a, Matrix b)
+    {
+        if (a.rows == b.cols)
+        {
+            float[] resultValues = new float[a.rows * b.cols];
+
+            for (int i = 0; i < a.rows; i++)
+            {
+                for (int j = 0; j < b.cols; j++)
+                {
+                    for (int k = 0; k < a.cols; k++)
+                    {
+                        resultValues[i * b.cols + j] += a.values[i * a.cols + k] * b.values[k * b.cols + j];
+                    }
+                }
+            }
+
+            Matrix result = new Matrix(a.rows, b.cols, resultValues);
+            return result;
+        }
+        else
+        {
+            throw new Exception("The number of rows of matrix A must match the number os columns of B!");
+        }
+    }
 }

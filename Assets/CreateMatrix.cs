@@ -8,9 +8,12 @@ public class test : MonoBehaviour
     void Start()
     {
         float[] x = new float[6] { 1, 2, 3, 4, 5, 6 };
+        float[] y = new float[6] { 1, 2, 3, 4, 5, 6 };
 
         Matrix m = new Matrix(2, 3, x);
-        Debug.Log(m.ToString());
+        Matrix m2 = new Matrix(3, 2, y);
+
+        Debug.Log((m * m2).ToString());
     }
 
     // Update is called once per frame
