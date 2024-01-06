@@ -23,7 +23,7 @@ public class Matrix
             matrix += "[";
             for (int j = 0; j < cols; j++)
             {
-                matrix += values[i+j];
+                matrix += values[i * cols + j] ;
 
                 if(j != cols-1)
                 {
