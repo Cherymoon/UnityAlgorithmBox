@@ -14,6 +14,18 @@ public class Matrix
         Array.Copy(v, values, rows * cols);
     }
 
+    public Coords AsCoords()
+    {
+        if (rows == 4 && cols == 1)
+        {
+            return new Coords(values[0], values[1], values[2], values[3]);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public override string ToString()
     {
         string matrix = "";
