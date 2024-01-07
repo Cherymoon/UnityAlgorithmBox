@@ -146,6 +146,16 @@ public class HolisticMath
         return mQ.AsCoords();
     }
 
+    static public Coords Shear(Coords position, Vector3 shear)
+    {
+        Matrix mQ;
+        Matrix mS = new Matrix(4, 4, new float[16] { 1, shear.y, shear.z, 0, shear.x, 1, shear.z, 0, shear.x, shear.y, 1, 0, 0, 0, 0, 1 });
+        Matrix mP = new Matrix(4, 1, position.AsFloats());
+
+        mQ = mS * mP;
+        return mQ.AsCoords();
+    }
+
     static public Coords Cross(Coords vector1, Coords vector2)
     {
         float xMult = vector1.y * vector2.z - vector1.z * vector2.y;
