@@ -105,12 +105,12 @@ public class HolisticMath
         mQ = mv * mP;
         return mQ.AsCoords();
     }
-    
+
     static public Coords Scale(Coords position, Coords scale)
     {
         Matrix mQ;
         Matrix mS = new Matrix(4, 4, new float[] { scale.x, 0, 0, 0, 0, scale.y, 0, 0, 0, 0, scale.z, 0, 0, 0, 0, 1 });
-        Matrix mP = new Matrix(4, 1, new float[] { position.x, position.y, position.z, 1 });
+        Matrix mP = new Matrix(4, 1, position.AsFloats());
 
         mQ = mS * mP;
         return mQ.AsCoords();
