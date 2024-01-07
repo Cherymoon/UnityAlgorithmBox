@@ -156,6 +156,16 @@ public class HolisticMath
         return mQ.AsCoords();
     }
 
+    static public Coords ReflectX(Coords position)
+    {
+        Matrix mQ;
+        Matrix mR = new Matrix(4, 4, new float[16] { -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 });
+        Matrix mP = new Matrix(4, 1, position.AsFloats());
+
+        mQ = mR * mP;
+        return mQ.AsCoords();
+    }
+
     static public Coords Cross(Coords vector1, Coords vector2)
     {
         float xMult = vector1.y * vector2.z - vector1.z * vector2.y;
