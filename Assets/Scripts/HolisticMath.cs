@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
@@ -116,6 +117,34 @@ public class HolisticMath
         return mQ.AsCoords();
     }
 
+    static public Coords Rotate(Coords position, float angleX, bool clockwiseX,
+                                                float angleY, bool clockwiseY,
+                                                float angleZ, bool clockwiseZ)
+    {
+        Matrix mQ;
+        Matrix mP = new Matrix(4, 1, position.AsFloats());
+
+        if (clockwiseX)
+        {
+            angleX = 2 * Mathf.PI - angleX;
+        }
+        if (clockwiseY)
+        {
+            angleY = 2 * Mathf.PI - angleY;
+        }
+        if (clockwiseZ)
+        {
+            angleZ = 2 * Mathf.PI - angleZ;
+        }
+
+        Matrix xRoll = new Matrix(4, 4, new float[16] { 1, 0, 0, 0, 0, Mathf.Cos(angleX), -Mathf.Sin(angleX), 0, 0, Mathf.Sin(angleX), Mathf.Cos(angleX), 0, 0, 0, 0, 1 });
+        Matrix yRoll = new Matrix(4, 4, new float[16] { Mathf.Cos(angleY), 0, Mathf.Sin(angleY), 0, 0, 1, 0, 0, -Mathf.Sin(angleY), 0, Mathf.Cos(angleY), 0, 0, 0, 0, 1 });
+        Matrix zRoll = new Matrix(4, 4, new float[16] { Mathf.Cos(angleZ), -Mathf.Sin(angleZ), 0, 0, Mathf.Sin(angleZ), Mathf.Cos(angleZ), 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 });
+
+        mQ = zRoll * yRoll * xRoll * mP;
+
+        return mQ.AsCoords();
+    }
 
     static public Coords Cross(Coords vector1, Coords vector2)
     {

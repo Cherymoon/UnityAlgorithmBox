@@ -161,9 +161,9 @@ MonoBehaviour:
   - {fileID: 1251623255}
   - {fileID: 959711072}
   - {fileID: 1631836971}
-  angle: 0
   translation: {x: 1, y: 0, z: 0}
   scaling: {x: 2, y: 2, z: 2}
+  rotation: {x: 0, y: 45, z: 0}
   center: {fileID: 998574313}
 --- !u!4 &17957407
 Transform:
@@ -1619,8 +1619,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635167504}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.24543287, y: 0.14389406, z: -0.03688111, w: -0.957965}
-  m_LocalPosition: {x: 2.8104312, y: 4.890505, z: -6.0744534}
+  m_LocalRotation: {x: -0.13566253, y: 0.17643806, z: -0.024571788, w: -0.9746084}
+  m_LocalPosition: {x: 3.725423, y: 3.5649805, z: -8.352836}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
