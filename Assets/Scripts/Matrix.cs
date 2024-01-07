@@ -1,8 +1,10 @@
 using System;
+using System.Diagnostics;
+using UnityEngine;
 
 public class Matrix
 {
-    float[] values;
+    public float[] values;
     int rows;
     int cols;
 
@@ -69,7 +71,7 @@ public class Matrix
 
     static public Matrix operator *(Matrix a, Matrix b)
     {
-        if (a.rows == b.cols)
+        if (a.cols == b.rows)
         {
             float[] resultValues = new float[a.rows * b.cols];
 
@@ -89,6 +91,7 @@ public class Matrix
         }
         else
         {
+            UnityEngine.Debug.Log(a.rows + ":" + b.cols);
             throw new Exception("The number of rows of matrix A must match the number os columns of B!");
         }
     }

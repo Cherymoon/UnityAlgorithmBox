@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.Android;
 
 public class HolisticMath
 {
@@ -16,8 +18,8 @@ public class HolisticMath
 
     static public float Distance(Coords point1, Coords point2)
     {
-        float diffSquared = Square(point1.x - point2.x) + 
-                            Square(point1.y - point2.y) + 
+        float diffSquared = Square(point1.x - point2.x) +
+                            Square(point1.y - point2.y) +
                             Square(point1.z - point2.z);
         float squareRoot = Mathf.Sqrt(diffSquared);
         return squareRoot;
@@ -66,7 +68,7 @@ public class HolisticMath
 
     static public Coords Rotate(Coords vector, float angle, bool clockwise) //in radians
     {
-        if(clockwise)
+        if (clockwise)
         {
             angle = 2 * Mathf.PI - angle;
         }
@@ -75,7 +77,7 @@ public class HolisticMath
         float yVal = vector.x * Mathf.Sin(angle) + vector.y * Mathf.Cos(angle);
         return new Coords(xVal, yVal, 0);
     }
-   
+
     static public Coords Translate(Coords position, Coords facing, Coords vector)
     {
         if (HolisticMath.Distance(new Coords(0, 0, 0), vector) <= 0) return position;
@@ -92,6 +94,19 @@ public class HolisticMath
         float zVal = position.z + vector.z;
         return new Coords(xVal, yVal, zVal);
     }
+
+
+    static public Coords Translate(Coords position, Coords vector)
+    {
+        Matrix mQ;
+        Matrix mv = new Matrix(4, 4, new float[16] { 1, 0, 0, vector.x, 0, 1, 0, vector.y, 0, 0, 1, vector.z, 0, 0, 0, 1 });
+        Matrix mP = new Matrix(4, 1, position.AsFloats());
+
+        mQ = mv * mP;
+        return mQ.AsCoords();
+    }
+
+
 
     static public Coords Cross(Coords vector1, Coords vector2)
     {
